@@ -23,6 +23,42 @@ ChartJS.register(
 function App() {
   const [kpis, setKpis] = useState([]);
 
+  // Mock data for GitHub Pages deployment
+  const mockKpis = [
+    {
+      kpi_name: "Throughput",
+      unit: "Mbps",
+      values: Array.from({ length: 120 }, (_, i) => ({
+        time: `${String(Math.floor(i / 12) + 10).padStart(2, "0")}:${String((i % 12) * 5).padStart(2, "0")}`,
+        value: Math.round((Math.random() * 70 + 80) * 100) / 100
+      }))
+    },
+    {
+      kpi_name: "Latency",
+      unit: "ms",
+      values: Array.from({ length: 120 }, (_, i) => ({
+        time: `${String(Math.floor(i / 12) + 10).padStart(2, "0")}:${String((i % 12) * 5).padStart(2, "0")}`,
+        value: Math.round((Math.random() * 50 + 10) * 100) / 100
+      }))
+    },
+    {
+      kpi_name: "Packet Loss",
+      unit: "%",
+      values: Array.from({ length: 120 }, (_, i) => ({
+        time: `${String(Math.floor(i / 12) + 10).padStart(2, "0")}:${String((i % 12) * 5).padStart(2, "0")}`,
+        value: Math.round(Math.random() * 5 * 100) / 100
+      }))
+    },
+    {
+      kpi_name: "CPU Utilization",
+      unit: "%",
+      values: Array.from({ length: 120 }, (_, i) => ({
+        time: `${String(Math.floor(i / 12) + 10).padStart(2, "0")}:${String((i % 12) * 5).padStart(2, "0")}`,
+        value: Math.round((Math.random() * 70 + 20) * 100) / 100
+      }))
+    }
+  ];
+
   useEffect(() => {
     fetchData();
     const interval = setInterval(() => fetchData(), 5000);
@@ -31,10 +67,13 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/kpis");
+      // Try to fetch from backend
+      const res = await axios.get("http://localhost:8000/kpis", { timeout: 2000 });
       setKpis(Object.values(res.data));
     } catch (err) {
-      console.log("API Error:", err);
+      // Fallback to mock data for GitHub Pages
+      console.log("Using mock data (backend unavailable)");
+      setKpis(mockKpis);
     }
   };
 
