@@ -68,6 +68,7 @@ function App() {
   ];
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const initData = async () => {
       try {
         // Try to fetch from backend
