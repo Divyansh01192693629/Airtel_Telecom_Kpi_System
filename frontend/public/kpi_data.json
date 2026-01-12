@@ -1,0 +1,26 @@
+{
+  "throughput": {
+    "kpi_name": "Throughput",
+    "unit": "Mbps",
+    "min": 80,
+    "max": 150
+  },
+  "latency": {
+    "kpi_name": "Latency",
+    "unit": "ms",
+    "min": 10,
+    "max": 60
+  },
+  "packet_loss": {
+    "kpi_name": "Packet Loss",
+    "unit": "%",
+    "min": 0,
+    "max": 5
+  },
+  "cpu_util": {
+    "kpi_name": "CPU Utilization",
+    "unit": "%",
+    "min": 20,
+    "max": 90
+  }
+}

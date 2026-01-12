@@ -31,7 +31,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/kpis");
+      const res = await axios.get("http://localhost:8000/kpis");
       setKpis(Object.values(res.data));
     } catch (err) {
       console.log("API Error:", err);
@@ -113,6 +113,20 @@ function App() {
                       tension: 0.2,
                     },
                   ],
+                }}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: true,
+                  plugins: {
+                    legend: {
+                      position: "top",
+                    },
+                  },
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
+                  },
                 }}
               />
             </div>

@@ -16,6 +16,12 @@ app.add_middleware(
 )
 
 
+# Root endpoint
+@app.get("/")
+def root():
+    return {"message": "Backend is running!", "version": "1.0"}
+
+
 # -----------------------------
 # Function to generate 100+ random KPI values
 # -----------------------------
